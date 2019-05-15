@@ -5,11 +5,6 @@ import io.micronaut.aop.MethodInvocationContext;
 import java.lang.reflect.Method;
 import javax.inject.Singleton;
 
-/**
- * Register publisher proxies as spring beans for autowiring.
- *
- * <p>Finds all ServiceSkeleton implementing beans and calls ServiceSupport.getOrCreate() to getOrCreate the proxies.
- */
 @Singleton
 public final class PublisherIntroduction implements MethodInterceptor<GenericPublisher<?>, Object> {
 
@@ -32,7 +27,7 @@ public final class PublisherIntroduction implements MethodInterceptor<GenericPub
         }
     }
 
-    public static boolean isEqualsMethod(final Method method) {
+    private static boolean isEqualsMethod(final Method method) {
         if ((method == null) || !"equals".equals(method.getName())) {
             return false;
         }
@@ -40,17 +35,11 @@ public final class PublisherIntroduction implements MethodInterceptor<GenericPub
         return (paramTypes.length == 1) && (paramTypes[0] == Object.class);
     }
 
-    /**
-     * Determine whether the given method is a "hashCode" method.
-     */
-    public static boolean isHashCodeMethod(final Method method) {
+    private static boolean isHashCodeMethod(final Method method) {
         return (method != null) && "hashCode".equals(method.getName()) && (method.getParameterTypes().length == 0);
     }
 
-    /**
-     * Determine whether the given method is a "toString" method.
-     */
-    public static boolean isToStringMethod(final Method method) {
+    private static boolean isToStringMethod(final Method method) {
         return (method != null) && "toString".equals(method.getName()) && (method.getParameterTypes().length == 0);
     }
 

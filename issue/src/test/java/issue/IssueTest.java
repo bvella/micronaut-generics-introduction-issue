@@ -7,13 +7,11 @@ import org.junit.jupiter.api.Test;
 @MicronautTest
 public class IssueTest {
     
-    @Inject public Issue issue;
+    @Inject public SpecificPublisher publisher;
     
     @Test
     public void test() {
-        System.out.println("START");
-        issue.publish();
-        System.out.println("END");
+        publisher.publish(new SpecificEvent());
     }
     
 }
