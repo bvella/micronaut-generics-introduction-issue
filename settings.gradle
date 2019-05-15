@@ -1,0 +1,3 @@
+rootProject.name = 'micronaut-generics-introduction-issue'
+
+include 'issue'

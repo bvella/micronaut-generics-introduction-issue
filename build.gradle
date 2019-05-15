@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+subprojects { Project subproject ->
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+    
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    idea {
+        module {
+            outputDir file('build/classes/java/main')
+            testOutputDir file('build/classes/java/test')
+            generatedSourceDirs += file('build/generated/sources/annotationProcessor/java/main')
+            generatedSourceDirs += file('build/generated/sources/annotationProcessor/java/test')
+        }
+    }
+    
+}
